@@ -10,8 +10,6 @@ const showUser = async () => {
   // getUserInfo().then((data) => console.log(data));
   const person = await getUserInfo();
   displayUser(person);
-
-  // display user
 };
 
 window.addEventListener('DOMContentLoaded', showUser);

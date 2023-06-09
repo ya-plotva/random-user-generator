@@ -14,19 +14,23 @@ const displayUser = (person) => {
   removeActiveStyle(icons);
   icons[0].classList.add('active');
 
-  // iterating over btns-icons
-  icons.forEach((icon) => {
-    const label = icon.dataset.label;
-    icon.addEventListener('click', () => {
-      title.textContent = `My ${label} is`;
-      value.textContent = person[label];
-      // changing style for an active icon
-      removeActiveStyle(icons);
-      icon.classList.add('active');
+  // icon btn handler
+  function iconClickHandler() {
+    const label = this.dataset.label;
+    title.textContent = `My ${label} is`;
+    value.textContent = person[label];
+    removeActiveStyle(icons);
+    this.classList.add('active');
+    console.log(person[label]);
 
-      console.log(person[label]);
-    });
-  });
+    // removing the event listener
+    icons.forEach((icon) =>
+      icon.removeEventListener('click', iconClickHandler)
+    );
+  }
+
+  // iterating over btns-icons
+  icons.forEach((icon) => icon.addEventListener('click', iconClickHandler));
 };
 
 export default displayUser;
